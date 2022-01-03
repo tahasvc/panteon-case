@@ -1,0 +1,56 @@
+# Specify docker-compose version.
+version: '3'
+
+# Define the services/containers to be run.
+services:
+  react:
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    container_name: panteon-client
+    ports:
+      - 3000:3000
+    networks:
+      - panteon-network
+
+  express:
+    build:
+      dockerfile: Dockerfile
+      context: ./server
+    restart: unless-stopped
+    container_name: panteon-server
+    ports:
+      - '3001:3001'
+    depends_on:
+      - redis
+      - mongo
+    environment:
+      - MONGO_CONNECTION_STRING=mongodb://mongo/panteon-task
+      - PORT=3001
+      - REDIS_URL=redis://redis:6379
+    networks:
+      - panteon-network
+
+  mongo:
+    image: mongo
+    container_name: db
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: panteon-task
+    ports:
+      - '27017:27017'
+    networks:
+      - panteon-network
+
+  redis:
+    image: redis
+    container_name: redis
+    restart: always
+    ports:
+      - '6379:6379'
+    networks:
+      - panteon-network
+
+networks:
+  panteon-network:
+    driver: bridge
