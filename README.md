@@ -5,7 +5,7 @@
 - The list is listened to instantly and the daily changes are shown as in the image below.
 - The daily change order is also reflected in the table instantly.
 <br/>
-<img src="https://github.com/tahasvc/panteon-case/blob/main/Screenshot_1.png" width="1100" height="500" />
+<img src="https://github.com/tahasvc/panteon-case/blob/master/Screenshot_1.png" width="1100" height="500" />
 
 ## Running with Docker
 - Prerequisites [Docker](https://www.docker.com/)
