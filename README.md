@@ -94,7 +94,7 @@
     
     * `/api/addMoney`
 
-   API Accepts <strong>POST</strong> request. Post add money of player.
+   API Accepts <strong>POST</strong> request. Post add money of player.Daily changes are instantly reflected in the table.
 
    Example request body:
     ```
